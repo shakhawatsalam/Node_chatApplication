@@ -1,9 +1,7 @@
 
 // get user page
 function getUsers(req, res, next) {
-    res.render("users", {
-        title: "users - Chat Application"
-    });
+    res.render("users");
 };
 
 
