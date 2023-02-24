@@ -1,13 +1,13 @@
+// external imports
 const multer = require("multer");
 const path = require("path");
 const createError = require("http-errors");
-
 
 function uploader(
     subfolder_path,
     allowed_file_types,
     max_file_size,
-    error_msg,
+    error_msg
 ) {
     // File upload folder
     const UPLOADS_FOLDER = `${__dirname}/../public/uploads/${subfolder_path}/`;
@@ -24,13 +24,15 @@ function uploader(
                     .replace(fileExt, "")
                     .toLowerCase()
                     .split(" ")
-                    .join("-") + "-" + Date.now();
+                    .join("-") +
+                "-" +
+                Date.now();
 
             cb(null, fileName + fileExt);
         },
     });
 
-    //prepare the final multer upload object
+    // preapre the final multer upload object
     const upload = multer({
         storage: storage,
         limits: {
@@ -46,9 +48,6 @@ function uploader(
     });
 
     return upload;
-
-};
+}
 
 module.exports = uploader;
-
-
